@@ -1,0 +1,44 @@
+#ifndef __CFCONTROLLABLEINTERFACE_DEFINED
+#define __CFCONTROLLABLEINTERFACE_DEFINED
+#include "CFCommonTypes.idl"
+
+module CF {
+
+  /* This interface provides a common API for the
+    control of a software component. */
+  interface ControllableInterface {
+
+  /* This exception indicates that an error occurred during an attempt
+    to start the component. The message provides additional information
+    describing the reason for the error. */
+  exception StartError {
+    CF::ErrorNumberType errorNumber;
+    string msg;
+  }; 
+
+  /* This exception indicates that an error occurred during
+    an attempt to stop the component. The message provides additional
+    information describing the reason for the error. */
+  exception StopError {
+    CF::ErrorNumberType errorNumber;
+    string msg;
+  };
+
+  /* This attribute specifies whether the component is started. */
+  readonly attribute boolean started;
+
+  /* This operation is provided to command a component implementing
+    this interface to start internal processing. */
+  void start () raises (
+    CF::ControllableInterface::StartError
+  );
+
+  /* This operation is provided to command a component implementing
+    this interface to stop all internal processing. */
+  void stop ()
+    raises (CF::ControllableInterface::StopError);
+  };
+
+};
+
+#endif

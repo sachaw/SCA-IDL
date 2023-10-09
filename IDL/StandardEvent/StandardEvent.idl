@@ -1,0 +1,8 @@
+#ifndef __STANDARDEVENT_DEFINED
+#define __STANDARDEVENT_DEFINED
+
+/* This file is provided to maintain backward compatibility with
+  legacy systems that use StandardEvent.idl files. */
+#include "SE_DomainEvent.idl"
+#include "SE_StateEvent.idl"
+#endif

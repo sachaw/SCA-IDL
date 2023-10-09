@@ -1,0 +1,44 @@
+#ifndef __SE_STATEEVENT_DEFINED
+#define __SE_STATEEVENT_DEFINED
+
+module StandardEvent {
+
+  /* This enumeration is utilized
+    in the StateChangeEventType. It is used to identify the category
+    of state change that has occurred. */
+  enum StateChangeCategoryType {
+    ADMINISTRATIVE_STATE_EVENT,
+    OPERATIONAL_STATE_EVENT,
+    USAGE_STATE_EVENT
+  };
+
+  /* This enumeration is utilized
+    in the StateChangeEventType. It is used to identify the specific
+    states of the event source before and after the state change
+    occurred. */
+  enum StateChangeType {
+    LOCKED,
+    UNLOCKED,
+    SHUTTING_DOWN,
+    ENABLED,
+    DISABLED,
+    IDLE,
+    ACTIVE,
+    BUSY
+  };
+
+  /* This structure is used to indicate that
+  the state of the event source has changed. The event producer
+  will send this structure into an event channel on behalf of
+  the event source. */
+  struct StateChangeEventType {
+    string producerId;
+    string sourceId;
+    StandardEvent::StateChangeCategoryType stateChangeCategory;
+    StandardEvent::StateChangeType stateChangeFrom;
+    StandardEvent::StateChangeType stateChangeTo;
+  };
+
+};
+
+#endif

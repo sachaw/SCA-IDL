@@ -1,0 +1,29 @@
+#ifndef __CFAPPLICATIONMANAGER_DEFINED
+#define __CFAPPLICATIONMANAGER_DEFINED
+#include "CFLifeCycle.idl"
+#include "CFPortAccessor.idl"
+#include "CFPropertySet.idl"
+#include "CFTestableInterface.idl"
+#include "CFControllableInterface.idl"
+
+module CF {
+
+  /* This interface provides for the control, configuration,
+    and status of an instantiated application in the domain. */
+  interface ApplicationManager : 
+    LifeCycle,
+    PortAccessor,
+    PropertySet,
+    TestableInterface,
+    ControllableInterface {
+
+    /* This attribute contains the name of the created application.
+      The ApplicationFactory interface's create operation name parameter
+      provides the name content. */
+    readonly attribute string name;
+
+  };
+
+};
+
+#endif

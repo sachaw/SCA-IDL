@@ -1,0 +1,18 @@
+#ifndef __CFAGGREGATEDEVICEATTRIBUTES_DEFINED
+#define __CFAGGREGATEDEVICEATTRIBUTES_DEFINED
+#include "CFAggregateDevice.idl"
+
+module CF {
+
+  interface AggregateDeviceAttributes {
+
+  /* This readonly attribute contains the object reference of
+    the AggregateDevice with which this device is associated or a nil
+    object reference if no association exists. */
+  readonly attribute CF::AggregateDevice compositeDevice;
+
+  };
+
+};
+
+#endif

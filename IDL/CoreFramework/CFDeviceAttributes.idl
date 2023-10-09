@@ -1,0 +1,26 @@
+#ifndef __CFDEVICEATTRIBUTES_DEFINED
+#define __CFDEVICEATTRIBUTES_DEFINED
+#include "CFComponentIdentifier.idl"
+
+module CF {
+
+  interface DeviceAttributes : ComponentIdentifier {
+
+  /* This enumeration defines a device's operational states.
+    The operational state indicates whether or not the object is
+    functioning. */
+  enum OperationalType {
+    ENABLED,
+    DISABLED
+  };
+
+  /* This attribute contains the device's operational
+    state. The operational state indicates whether or not the device
+    is functioning. */
+  readonly attribute CF::DeviceAttributes::OperationalType operationalState;
+
+  };
+
+};
+
+#endif

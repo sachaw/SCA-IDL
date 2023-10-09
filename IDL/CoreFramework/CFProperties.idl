@@ -1,0 +1,30 @@
+#ifndef __CFPROPERTIES_DEFINED
+#define __CFPROPERTIES_DEFINED
+
+module CF {
+
+  /* This type is an IDL struct type which can be used to hold any
+    basic type or static IDL type. */
+  struct DataType {
+
+    /* This attribute indicates the kind of value and type. The id can
+      be an integer string or a unique alphanumeric identifier. */
+    string id;
+
+    /* This attribute can be any static IDL type or basic
+      type. */
+    any value;
+  };
+
+  /* This type is an IDL unbounded sequence of CF DataType(s),
+    which can be used in defining a sequence of name and value pairs. */
+  typedef sequence <DataType> Properties;
+
+  /* This exception indicates a set of properties unknown by the component. */
+  exception UnknownProperties {
+    CF::Properties invalidProperties;
+  };
+
+};
+
+#endif

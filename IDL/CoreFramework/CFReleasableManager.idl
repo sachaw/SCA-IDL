@@ -1,0 +1,17 @@
+#ifndef __CFRELEASABLEMANAGER_DEFINED
+#define __CFRELEASABLEMANAGER_DEFINED
+
+module CF {
+
+  /* This interface is used for terminating an instantiated
+  device manager. */
+  interface ReleasableManager {
+
+    /* This operation provides the mechanism to terminate
+      a device manager, unregistering it from the domain manager. */
+    void shutdown ();
+  };
+
+};
+
+#endif

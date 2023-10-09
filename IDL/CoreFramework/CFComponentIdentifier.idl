@@ -1,0 +1,18 @@
+#ifndef __CFCOMPONENTIDENTIFIER_DEFINED
+#define __CFCOMPONENTIDENTIFIER_DEFINED
+
+module CF {
+
+  /* This interface provides an identifier attribute for
+    a component. */
+  interface ComponentIdentifier {
+
+  /* This readonly identifier attribute contains the instance-unique
+    identifier for a component. */
+  readonly attribute string identifier;
+
+  };
+
+};
+
+#endif

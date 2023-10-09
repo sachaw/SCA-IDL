@@ -1,0 +1,33 @@
+#ifndef __CFCOMPONENTFACTORY_DEFINED
+#define __CFCOMPONENTFACTORY_DEFINED
+#include "CFProperties.idl"
+#include "CFLifeCycle.idl"
+
+module CF {
+
+  /* A ComponentFactory can be used to create or destroy a Component. */
+  interface ComponentFactory : LifeCycle {
+
+    /* This exception indicates that the
+      createComponent operation failed to create the Component. The
+      message is component-dependent, providing additional information
+      describing the reason for the error. */
+    exception CreateComponentFailure {
+      CF::ErrorNumberType errorNumber;
+      string msg;
+    };
+
+    /* This operation provides the capability to create
+      Components. */
+    CF::ComponentType createComponent (
+      in string componentId,
+      in CF::Properties qualifiers
+    ) raises (
+      CF::ComponentFactory::CreateComponentFailure
+    );
+
+  };
+
+};
+
+#endif

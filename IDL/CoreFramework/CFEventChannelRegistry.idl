@@ -1,0 +1,45 @@
+#ifndef __CFEVENTCHANNELREGISTRY_DEFINED
+#define __CFEVENTCHANNELREGISTRY_DEFINED
+#include "CFCommonTypes.idl"
+
+module CF {
+  interface EventChannelRegistry {
+
+    /* This exception indicates that a registering consumer is already
+      connected to the specified event channel. */
+    exception AlreadyConnected {};
+
+    /* This exception indicates that a DomainManager was not able to
+      locate the event channel. */
+    exception InvalidEventChannelName {};
+
+    /* This exception indicates that the unregistering consumer
+      was not connected to the specified event channel. */
+    exception NotConnected {};
+    /* This operation is used to connect
+      a consumer to a domain's event channel. */
+    void registerWithEventChannel (
+      in Object registeringObject,
+      in string registeringId,
+      in string eventChannelName
+    ) raises (
+      CF::InvalidObjectReference,
+      CF::EventChannelRegistry::InvalidEventChannelName,
+      CF::EventChannelRegistry::AlreadyConnected
+    );
+
+    /* This operation is used to disconnect
+      a consumer from a domain's event channel. */
+    void unregisterFromEventChannel (
+      in string unregisteringId, 
+      in string eventChannelName
+    ) raises (
+      CF::EventChannelRegistry::InvalidEventChannelName,
+      CF::EventChannelRegistry::NotConnected
+    );
+
+  };
+
+};
+
+#endif

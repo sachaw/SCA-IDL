@@ -1,0 +1,31 @@
+#ifndef __CFFULLCOMPONENTREGISTRY_DEFINED
+#define __CFFULLCOMPONENTREGISTRY_DEFINED
+#include "CFComponentRegistry.idl"
+
+module CF {
+
+  /* This interface is used to manage the shutdown of
+    logical devices and services. */
+  interface FullComponentRegistry : ComponentRegistry {
+
+    /* This exception indicates that an internal error has occurred
+      to prevent unregister operations from successful
+      completion. The message provides additional information describing the
+      reason for the error. */
+    exception UnregisterError {
+      CF::ErrorNumberType errorNumber;
+      string msg;
+    };
+
+    /* This operation unregisters the component. */
+    void unregisterComponent(
+      in string identifier
+    ) raises(
+      UnregisterError
+    );
+
+  };
+
+};
+
+#endif

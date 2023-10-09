@@ -1,0 +1,50 @@
+#ifndef __CFPROPERTYSET_DEFINED
+#define __CFPROPERTYSET_DEFINED
+#include "CFProperties.idl"
+
+module CF {
+
+  /* This interface defines configure and query operations
+    to access component properties/attributes. */
+  interface PropertySet {
+
+    /* This exception indicates the configuration of a component
+      has failed (no configuration at all was done). The message
+      provides additional information describing the reason why
+      the error occurred. The invalid properties returned indicates
+      the properties that were invalid. */
+    exception InvalidConfiguration {
+      string msg;
+      CF::Properties invalidProperties;
+    };
+
+    /* This exception indicates the configuration
+      of a Component was partially successful. The invalid properties
+      returned indicates the properties that were invalid. */
+    exception PartialConfiguration {
+      CF::Properties invalidProperties;
+    };
+
+    /* The purpose of this operation is to allow id/value pair
+      configuration properties to be assigned to components
+      implementing this interface. */
+    void configure (
+      in CF::Properties configProperties
+    ) raises (
+      CF::PropertySet::InvalidConfiguration,
+      CF::PropertySet::PartialConfiguration
+    );
+
+    /* The purpose of this operation is to allow a component
+      to be queried to retrieve its properties. */
+    void query (
+      inout CF::Properties configProperties
+    ) raises (
+      CF::UnknownProperties
+    );
+
+  };
+
+};
+
+#endif

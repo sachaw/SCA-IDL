@@ -1,0 +1,42 @@
+#ifndef __CFLIFECYCLE_DEFINED
+#define __CFLIFECYCLE_DEFINED
+#include "CFCommonTypes.idl"
+
+module CF {
+
+  /* This interface defines the generic operations for initializing
+    or releasing instantiated component-specific data and/or processing
+    elements. */
+  interface LifeCycle {
+
+    /* This exception indicates an error occurred during component
+      initialization. The messages provide additional information
+      describing the reason why the error occurred. */
+    exception InitializeError {
+      CF::StringSequence errorMessages;
+    };
+
+    /* This exception indicates an error occurred during component
+      releaseObject. The messages provide additional information
+      describing the reason why the error occurred. */
+    exception ReleaseError {
+      CF::StringSequence errorMessages;
+    };
+
+    /* The purpose of this operation is to provide a mechanism
+      to set an object to an known initial state. */
+    void initialize () raises (
+      CF::LifeCycle::InitializeError
+    );
+
+    /* The purpose of this operation is to provide a means
+      by which an instantiated component may be torn down. */
+    void releaseObject () raises (
+      CF::LifeCycle::ReleaseError
+    );
+
+  };
+
+};
+
+#endif

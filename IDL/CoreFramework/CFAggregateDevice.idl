@@ -1,0 +1,40 @@
+#ifndef __CFAGGREGATEDEVICE_DEFINED
+#define __CFAGGREGATEDEVICE_DEFINED
+#include "CFCommonTypes.idl"
+
+module CF {
+
+  /* This interface provides aggregate behavior that can
+    be used to add and remove devices from a parent device. This interface
+    can be provided via inheritance or as a "provides port".
+    Child devices use this interface to add or remove themselves from
+    parent device when being created or torn-down. */
+  interface AggregateDevice {
+
+    /* This readonly attribute contains a list of devices that
+      have been added to this device or a sequence length of zero
+      if the device has no aggregation relationships with other devices. */
+    readonly attribute CF::ObjectSequence devices;
+
+    /* This operation provides the mechanism to associate
+      a device with another device. */
+    void addDevice (
+      in Object associatedDevice,
+      in string identifier
+    ) raises (
+      CF::InvalidObjectReference
+    );
+
+    /* This operation provides the mechanism to disassociate
+      a device from another device. */
+    void removeDevice (
+      in string identifier
+    ) raises (
+      CF::InvalidObjectReference
+    );
+
+  };
+
+};
+
+#endif

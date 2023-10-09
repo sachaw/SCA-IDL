@@ -1,0 +1,21 @@
+#ifndef __CFDEPLOYMENTATTRIBUTES_DEFINED
+#define __CFDEPLOYMENTATTRIBUTES_DEFINED
+#include "CFPlatformTypes.idl"
+
+module CF {
+
+  /* This interface provides deployment attributes
+    for an application. */
+  interface DeploymentAttributes {
+
+    /* This attribute contains the list of application
+      Components that have been successfully deployed with this application
+      or ApplicationFactory during instantiation or a sequence length of zero
+      if no application Components have been deployed. */
+    readonly attribute CF::Components deployedComponents;
+
+  };
+
+};
+
+#endif

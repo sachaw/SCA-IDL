@@ -1,0 +1,55 @@
+#ifndef __CFDOMAININSTALLATION_DEFINED
+#define __CFDOMAININSTALLATION_DEFINED
+#include "CFPlatformTypes.idl"
+
+module CF {
+
+  interface DomainInstallation {
+
+    /* This exception is raised when an application installation has
+      not completed correctly. The message provides additional
+      information describing the reason for the error. */
+    exception ApplicationInstallationError {
+      CF::ErrorNumberType errorNumber;
+      string msg;
+    };
+
+    exception ApplicationAlreadyInstalled {};
+
+    /* This exception indicates the application ID is invalid. */
+    exception InvalidIdentifier {};
+
+    /* This exception is raised when an application uninstallation has
+      not completed correctly. The message provides additional
+      information describing the reason for the error. */
+    exception ApplicationUninstallationError {
+      CF::ErrorNumberType errorNumber;
+      string msg;
+    };
+
+    /* This operation is used to register new
+      application software in the DomainManager's Domain profile. */
+    CF::ComponentType installApplication (
+      in string profileFileName
+    ) raises (
+      CF::InvalidProfile,
+      CF::InvalidFileName,
+      CF::DomainInstallation::ApplicationInstallationError,
+      CF::DomainInstallation::ApplicationAlreadyInstalled
+    );
+
+    /* This operation is used to uninstall an
+      application and its associated ApplicationFactory from the
+      DomainManager. */
+    void uninstallApplication (
+      in string identifier
+    ) raises (
+      CF::DomainInstallation::InvalidIdentifier,
+      CF::DomainInstallation::ApplicationUninstallationError
+    );
+
+  };
+
+};
+
+#endif

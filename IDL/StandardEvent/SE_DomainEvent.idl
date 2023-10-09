@@ -1,0 +1,24 @@
+#ifndef __SE_DOMAINEVENT_DEFINED
+#define __SE_DOMAINEVENT_DEFINED
+#include "CFCommonTypes.idl"
+
+module StandardEvent {
+
+  /* This enumeration is utilized in the ComponentChangeEventType to indicate 
+    whether an object that has been added to or removed from the domain. */
+  enum ComponentChangeType {
+  ADDED,
+  REMOVED
+  };
+
+  /* This structure is used to indicate that an event source has been
+    added to or removed from the domain. */
+  struct ComponentChangeEventType {
+    string producerId;
+    ComponentChangeType componentChange;
+    CF::ComponentType domainComponent;
+  };
+
+};
+
+#endif

@@ -1,0 +1,29 @@
+#ifndef __CFTESTABLEINTERFACE_DEFINED
+#define __CFTESTABLEINTERFACE_DEFINED
+#include "CFProperties.idl"
+
+module CF {
+
+  /* This interface defines a set of operations that
+    can be used to test component implementations. */
+  interface TestableInterface {
+
+    /* This exception indicates the requested testid for a test
+      to be performed is not known by the component. */
+    exception UnknownTest {};
+
+    /* This operation allows components to be blackbox tested.
+      This allows Built-In Tests to be implemented which provides
+      a means to isolate faults (both software and hardware) within
+      the system. */
+    void runTest (
+      in unsigned long testid,
+      inout CF::Properties testValues
+    ) raises (
+      CF::TestableInterface::UnknownTest, CF::UnknownProperties
+    );
+  };
+
+};
+
+#endif

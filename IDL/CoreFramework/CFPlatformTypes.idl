@@ -1,0 +1,33 @@
+#ifndef __CFPLATFORMTYPES_DEFINED
+#define __CFPLATFORMTYPES_DEFINED
+#include "CFCommonTypes.idl"
+
+module CF {
+
+  /* This structure associates a component with the device
+    upon which the component is executing. */
+  struct DeviceAssignmentType {
+    string componentId;
+    string assignedDeviceId;
+  };
+
+  /* The sequence provides an unbounded sequence of 0..n of
+    DeviceAssignmentType. */
+  typedef sequence <DeviceAssignmentType> DeviceAssignmentSequence;
+
+  /* This exception indicates an invalid component profile error. */
+  exception InvalidProfile {};
+
+  /* This sequence defines a sequence of ComponentType structures */
+  typedef sequence <CF::ComponentType> Components;
+
+  /* This exception indicates that the device is not capable of
+    the behavior being attempted due to the state the device is in.
+    An example of such behavior is allocateCapacity. */
+  exception InvalidState {
+    string msg;
+  };
+
+};
+
+#endif
